@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
@@ -14,6 +14,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 const LoginSignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const alert = useAlert();
 
   const { error, loading, isAuthenticated, message } = useSelector(
@@ -72,6 +73,7 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
     if (error) {
@@ -82,8 +84,7 @@ const LoginSignUp = () => {
       alert.success(message);
     }
     if (isAuthenticated) {
-      alert.success("User has been logged In!");
-      navigate("/");
+      navigate(redirect);
     }
   }, [dispatch, error, alert, isAuthenticated, message]);
 

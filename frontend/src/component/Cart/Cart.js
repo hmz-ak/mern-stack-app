@@ -7,6 +7,7 @@ import { Typography } from "@material-ui/core";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Navbar from "../layout/Navbar/Navbar";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const Cart = () => {
   const decreaseQuantity = (id, quantity) => {
     const newQty = quantity - 1;
     if (1 >= quantity) {
-      return;
+      return dispatch(removeItemsFromCart(id));
     }
     dispatch(addItemsToCart(id, newQty));
   };
@@ -48,6 +49,7 @@ const Cart = () => {
         </div>
       ) : (
         <Fragment>
+          <Navbar />
           <div className="cartPage">
             <div className="cartHeader">
               <p>Product</p>

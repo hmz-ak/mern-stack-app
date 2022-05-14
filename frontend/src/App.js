@@ -89,19 +89,7 @@ function App() {
             element={<ResetPassword />}
           />
           <Route exact path="/verify/:token" element={<VerifyUser />} />
-          <Route
-            exact
-            path="/cart"
-            element={
-              <ProtectedRoute
-                loading={loading}
-                isAuthenticated={isAuthenticated}
-                user={user}
-              >
-                <Cart />
-              </ProtectedRoute>
-            }
-          />
+          <Route exact path="/cart" element={<Cart />} />
         </Routes>
       </Router>
     </div>

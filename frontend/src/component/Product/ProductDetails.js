@@ -123,8 +123,8 @@ const ProductDetails = () => {
               <div className="details-block-4">
                 <h3>
                   Status :
-                  <span className={product.stock ? "green" : "red"}>
-                    {product.stock ? " In Stock" : " Out of Stock"}
+                  <span className={product.Stock ? "green" : "red"}>
+                    {product.Stock ? " In Stock" : " Out of Stock"}
                   </span>
                 </h3>
               </div>

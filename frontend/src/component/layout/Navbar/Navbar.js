@@ -12,17 +12,20 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from "react-router-dom";
+import Badge from "@mui/material/Badge";
 
-const pages = ["Home", "Products", "About"];
+import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+
+const pages = ["Home", "Products", "About", "Cart"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  const { cartItems } = useSelector((state) => state.cart);
+
   const navigate = useNavigate();
   const routeToLogin = () => {
     navigate("/Login");
@@ -102,7 +105,7 @@ const ResponsiveAppBar = () => {
                     to={page === "Home" ? "/" : `/${page}`}
                   >
                     <Typography sx={{ mr: 3 }} textAlign="center">
-                      {page}
+                      {page === "Cart" ? <ShoppingCartIcon /> : page}
                     </Typography>
                   </Link>
                 </MenuItem>
@@ -128,7 +131,23 @@ const ResponsiveAppBar = () => {
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  <Typography
+                    style={{
+                      fontSize: "1rem",
+                      textTransform: "capitalize",
+                      margin: "0 1rem",
+                    }}
+                    sx={{ mr: 3 }}
+                    textAlign="center"
+                  >
+                    {page === "Cart" ? (
+                      <Badge badgeContent={cartItems.length} color="primary">
+                        <ShoppingCartIcon />
+                      </Badge>
+                    ) : (
+                      page
+                    )}
+                  </Typography>
                 </Button>
               </Link>
             ))}
