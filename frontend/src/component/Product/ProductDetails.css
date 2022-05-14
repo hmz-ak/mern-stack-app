@@ -87,7 +87,7 @@
 }
 .reviewsHeading {
   color: #000000be;
-  font: 500 1.4vmax "Roboto";
+  font: 500 1.4vmax "Poppins";
   text-align: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.226);
   padding: 1vmax;
@@ -117,7 +117,7 @@
 }
 .reviewCard > p {
   color: rgba(0, 0, 0, 0.836);
-  font: 600 0.9vmax "Roboto";
+  font: 600 0.9vmax "Poppins";
 }
 .reviewCardComment {
   color: rgba(0, 0, 0, 0.445);

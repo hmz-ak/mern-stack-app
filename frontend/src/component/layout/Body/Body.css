@@ -29,7 +29,7 @@
   height: auto;
 }
 .productCard > p {
-  font: 600 1.3vmax "Roboto";
+  font: 600 1.3vmax "Poppins";
   margin: 1rem 0;
 }
 .productCard > div {
@@ -41,11 +41,11 @@
 .productCard > div > span {
   margin-top: 0.5rem;
   margin-left: 0.5rem;
-  font: 500 0.8rem "Roboto";
+  font: 500 0.8rem "Poppins";
 }
 .productCard > span {
   margin: 0.5rem 0;
-  font: 600 1rem "Roboto";
+  font: 600 1rem "Poppins";
   color: rgb(255, 63, 63);
 }
 .productCard:hover {

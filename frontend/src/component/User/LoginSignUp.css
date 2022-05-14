@@ -84,6 +84,18 @@
   font-size: 1.6vmax;
   color: rgba(0, 0, 0, 0.623);
 }
+.loginPassword {
+  position: relative;
+}
+.loginPassword > div {
+  position: absolute;
+  left: 85%;
+}
+.loginPassword > div > svg {
+  font-size: 1.6vmax;
+  color: rgba(0, 0, 0, 0.623);
+  cursor: pointer;
+}
 
 .loginForm > a {
   color: rgba(0, 0, 0, 0.651);

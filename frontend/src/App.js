@@ -18,16 +18,17 @@ import UpdatePassword from "./component/User/UpdatePassword";
 import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import VerifyUser from "./component/User/VerifyUser";
+import Cart from "./component/Cart/Cart";
 
 function App() {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Roboto", "Droid Sans"],
-      },
-    });
+    // WebFont.load({
+    //   google: {
+    //     families: ["Roboto", "Droid Sans"],
+    //   },
+    // });
     store.dispatch(loadUser());
   }, []);
 
@@ -88,6 +89,19 @@ function App() {
             element={<ResetPassword />}
           />
           <Route exact path="/verify/:token" element={<VerifyUser />} />
+          <Route
+            exact
+            path="/cart"
+            element={
+              <ProtectedRoute
+                loading={loading}
+                isAuthenticated={isAuthenticated}
+                user={user}
+              >
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>

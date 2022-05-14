@@ -8,11 +8,11 @@ import Navbar from "../Navbar/Navbar";
 
 const Header = (props) => {
   useEffect(() => {
-    WebFont.load({
-      google: {
-        families: ["Roboto", "Droid Sans"],
-      },
-    });
+    // WebFont.load({
+    //   google: {
+    //     families: ["Roboto", "Droid Sans"],
+    //   },
+    // });
   }, []);
 
   return (

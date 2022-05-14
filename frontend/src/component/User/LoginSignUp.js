@@ -8,6 +8,8 @@ import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 const LoginSignUp = () => {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ const LoginSignUp = () => {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isPasswordVisible, setPasswordVisibilty] = useState(false);
 
   const [user, setUser] = useState({
     name: "",
@@ -131,12 +134,24 @@ const LoginSignUp = () => {
                   <LockOpenIcon />
 
                   <input
-                    type="password"
+                    type={isPasswordVisible ? "text" : "password"}
                     placeholder="Password"
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
                   />
+                  <div>
+                    {" "}
+                    {isPasswordVisible ? (
+                      <Visibility
+                        onClick={() => setPasswordVisibilty(!isPasswordVisible)}
+                      />
+                    ) : (
+                      <VisibilityOff
+                        onClick={() => setPasswordVisibilty(!isPasswordVisible)}
+                      />
+                    )}
+                  </div>
                 </div>
                 <Link to="/password/forgot">Forget Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
