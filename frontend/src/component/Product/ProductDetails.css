@@ -1,0 +1,160 @@
+.ProductDetails {
+  width: 100vw;
+  height: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 4%;
+
+  padding: 2vmax;
+}
+.ProductDetails > div:last-child {
+  padding: 1vmax;
+  font-size: 1.2vmax;
+}
+.details-container {
+  width: 40vmax;
+  /* border: 2px solid grey; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.product-image {
+  width: 60%;
+  object-fit: cover;
+}
+.image-container {
+  align-items: center;
+}
+.details-block > div {
+  margin: 1vmax 0;
+}
+.details-block-1 p {
+  margin: 0.5vmax 0;
+}
+.details-block-2 {
+  display: flex;
+  align-items: center;
+  padding: 1vmax 0;
+  margin: 0 !important;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+
+.details-block-3-1-1 > input {
+  width: 3.5vmax;
+  height: 3vmax;
+  border: none;
+  text-align: center;
+  padding: 1vmax;
+  font-size: larger;
+}
+.increase-btn {
+  width: 3vmax;
+  height: 3vmax;
+  border-radius: 10%;
+  text-align: center;
+  padding: 0%;
+  background-color: rgba(1, 154, 1, 0.628);
+}
+.decrease-btn {
+  width: 3vmax;
+  height: 3vmax;
+  border-radius: 10%;
+  text-align: center;
+  padding: 0;
+  background-color: rgba(192, 2, 2, 0.722);
+}
+.add-to-cart-btn {
+  margin: 0 2vmax;
+  background-color: #ff9900;
+  border: 1px solid black;
+  color: black;
+  font-size: large;
+  border-radius: 5px;
+}
+.add-to-cart-btn:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+.reviewsHeading {
+  color: #000000be;
+  font: 500 1.4vmax "Roboto";
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.226);
+  padding: 1vmax;
+  width: 20vmax;
+  margin: auto;
+  margin-bottom: 4vmax;
+}
+.reviews {
+  display: flex;
+  overflow: auto;
+}
+
+.reviewCard {
+  flex: none;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.226);
+  border: 1px solid rgba(56, 56, 56, 0.116);
+  width: 30vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vmax;
+  padding: 3vmax;
+}
+.reviewCard > img {
+  width: 5vmax;
+}
+.reviewCard > p {
+  color: rgba(0, 0, 0, 0.836);
+  font: 600 0.9vmax "Roboto";
+}
+.reviewCardComment {
+  color: rgba(0, 0, 0, 0.445);
+  font: 300 0.8vmax cursive;
+}
+
+.noReviews {
+  font: 400 1.3vmax "Gill Sans";
+  text-align: center;
+  color: rgba(0, 0, 0, 0.548);
+}
+
+@media only screen and (max-width: 600px) {
+  .ProductDetails {
+    display: flex;
+    flex-direction: column;
+  }
+  .details-container {
+    width: 100%;
+    margin: 3vmax;
+  }
+  .ProductDetails > div:last-child {
+    justify-content: center;
+    align-items: center;
+    font-size: 2vmax;
+    text-align: center;
+  }
+  .details-block div {
+    margin: 1vmax 0;
+  }
+  .increase-btn,
+  .decrease-btn {
+    width: 5vmax;
+    height: 5vmax;
+  }
+  .details-block-3-1-1 > input {
+    width: 5vmax;
+    height: 5vmax;
+  }
+}

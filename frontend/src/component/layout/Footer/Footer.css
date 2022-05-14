@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+footer {
+  background-color: var(--very-dark-blue);
+  height: 30vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.1rem;
+}
+.section3 {
+  display: flex;
+  width: 90%;
+  height: 80%;
+  justify-content: space-between;
+}
+.column-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.social-media-container {
+  display: flex;
+  justify-content: space-between;
+}
+.social-media-container li {
+  list-style: none;
+}
+.social-media-container li a img svg:hover {
+  fill: var(--red-bright);
+}
+.footer-links li {
+  list-style: none;
+  margin: 5px 0;
+}
+.footer-links a {
+  color: var(--Very--Light--Gray);
+  text-decoration: none;
+  font-size: smaller;
+}
+.footer-links li a:hover {
+  opacity: 0.7;
+  transition: var(--transition);
+}
+form input {
+  border-radius: 25px;
+  border: none;
+  padding: 10px;
+}
+input:focus {
+  outline: none !important;
+  border: 1px solid var(--red-bright);
+}
+form .get-started-btn {
+  box-shadow: none;
+}
+@media only screen and (max-width: 900px) {
+  footer {
+    height: auto;
+  }
+  .section3 {
+    width: 100%;
+    /* flex-direction: column-reverse; */
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  footer input {
+    width: 70%;
+  }
+  .subscribe-form {
+    margin: 25px 0;
+    width: 100%;
+    text-align: center;
+  }
+  .row-container {
+    width: 45%;
+    padding-left: 45px;
+  }
+  .manage-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin: 15px 0;
+  }
+  .social-media-container {
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 15px 0;
+  }
+
+  .nav-links li {
+    font-size: large;
+    margin: 2vmax 0;
+  }
+  .body-container {
+    margin: 15vmax;
+  }
+  .body-container h2 {
+    font-size: 5vmax;
+    width: 50vmax;
+    margin: 10vmax auto;
+  }
+}
