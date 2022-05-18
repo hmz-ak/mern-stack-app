@@ -12,6 +12,9 @@ import Navbar from "../layout/Navbar/Navbar";
 const Cart = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  const { error, loading, isAuthenticated, message } = useSelector(
+    (state) => state.user
+  );
   const params = useParams();
   const navigate = useNavigate();
   const increaseQuantity = (id, quantity, stock) => {
@@ -35,7 +38,10 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping");
+    // if(isAuthenticated){
+    // return  navigate("/shipping")}
+    navigate("/Login?redirect=shipping")
+
   };
 
   return (

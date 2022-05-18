@@ -19,6 +19,9 @@ import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import VerifyUser from "./component/User/VerifyUser";
 import Cart from "./component/Cart/Cart";
+import Shipping from "./component/Cart/Shipping";
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
+
 
 function App() {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
@@ -90,6 +93,32 @@ function App() {
           />
           <Route exact path="/verify/:token" element={<VerifyUser />} />
           <Route exact path="/cart" element={<Cart />} />
+          <Route
+            exact
+            path="/shipping"
+            element={
+              <ProtectedRoute
+                loading={loading}
+                isAuthenticated={isAuthenticated}
+                user={user}
+              >
+                <Shipping />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/order/confirm"
+            element={
+              <ProtectedRoute
+                loading={loading}
+                isAuthenticated={isAuthenticated}
+                user={user}
+              >
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>

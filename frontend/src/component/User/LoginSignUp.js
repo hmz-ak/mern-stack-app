@@ -16,6 +16,7 @@ const LoginSignUp = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const alert = useAlert();
+  console.log(location)
 
   const { error, loading, isAuthenticated, message } = useSelector(
     (state) => state.user
@@ -73,7 +74,7 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = location.search ? `/${location.search.split("=")[1]}` : "/";
 
   useEffect(() => {
     if (error) {
