@@ -14,6 +14,8 @@ const userRouter = require("./routes/userRoute");
 app.use("/api/v1", userRouter);
 const orderRouter = require("./routes/orderRoutes");
 app.use("/api/v1", orderRouter);
+const paymentRouter = require("./routes/paymentRoutes");
+app.use("/api/v1", paymentRouter);
 
 // const loginRouter = require("./routes/userRoute");
 // app.use(("/api/v1", loginRouter));

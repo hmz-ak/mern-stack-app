@@ -1,5 +1,6 @@
 import {
   ADD_TO_CART,
+  PAYMENT_REQUEST,
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_INFO,
 } from "../constants/cartConstants";
@@ -42,4 +43,12 @@ export const saveShippingInfo = (data) => async (dispatch) => {
   });
 
   localStorage.setItem("shippingInfo", JSON.stringify(data));
+};
+export const getStripeApiKey = () => async (dispatch) => {
+  const { data } = await axios.get("/api/v1/stripeapikey");
+
+  dispatch({
+    type: PAYMENT_REQUEST,
+    payload: data.stripeApiKey,
+  });
 };
