@@ -11,6 +11,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
+import Typography from "@material-ui/core/Typography";
 
 const Sidebar = () => {
   return (
@@ -23,8 +24,8 @@ const Sidebar = () => {
           <DashboardIcon /> Dashboard
         </p>
       </Link>
-      <a>
-        <TreeView
+      <Typography style={{}}>
+      <TreeView
           defaultCollapseIcon={<ExpandMoreIcon />}
           defaultExpandIcon={<ImportExportIcon />}
         >
@@ -38,7 +39,8 @@ const Sidebar = () => {
             </Link>
           </TreeItem>
         </TreeView>
-      </a>
+      </Typography>
+       
       <Link to="/admin/orders">
         <p>
           <ListAltIcon />
