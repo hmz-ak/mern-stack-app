@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
+const path = require("path");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -25,6 +26,12 @@ app.use("/api/v1", paymentRouter);
 
 // const forgotPasswordRouter = require("./routes/userRoute");
 // app.use(("api/v1", forgotPasswordRouter));
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+});
 
 // Error Middle Ware
 const errorMiddleware = require("./middleware/error");

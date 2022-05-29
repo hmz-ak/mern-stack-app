@@ -1,5 +1,7 @@
 const dotenv = require("dotenv");
-dotenv.config({ path: "backend/config/config.env" });
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "backend/config/config.env" });
+}
 
 const catchAsyncErrors = require("../middleware/catchAsyncError");
 

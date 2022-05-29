@@ -30,18 +30,10 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const verificationToken = user.generateVerificationToken();
 
   // Step 3 - Email the user a unique verification link
-  const url = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
+  const url = `${req.protocol}://${req.get(
+    "host"
+  )}/verify/${verificationToken}`;
 
-  // transporter.sendMail({
-  //   to: email,
-  //   subject: 'Verify Account',
-  //   html: `Click <a href = '${url}'>here</a> to confirm your email.`/
-  // })
-
-  // const token = user.getJWTToken();
-  // const idVerificationUrl = `${req.protocol}://${req.get(
-  //   "host"
-  // )}/password/reset/${resetToken}`;
   const message = `Click  <a href='${url}'>here</a> to confirm your email`;
 
   try {
