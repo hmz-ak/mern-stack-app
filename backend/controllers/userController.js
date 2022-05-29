@@ -154,7 +154,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await sendEmail({
       email: user.email,
       subject: `Ecommerce Password Recovery`,
-      message,
+      html: message,
     });
 
     res.status(200).json({
