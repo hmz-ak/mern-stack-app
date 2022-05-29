@@ -14,11 +14,13 @@ import {
   clearErrors,
 } from "../../actions/userAction";
 import Loader from "../layout/Loader/Loader";
+import { useParams, useNavigate } from "react-router-dom";
 
-const UpdateUser = ({ history, match }) => {
+const UpdateUser = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-
+  const params = useParams();
+  const navigate = useNavigate();
   const { loading, error, user } = useSelector((state) => state.userDetails);
 
   const {
@@ -31,7 +33,7 @@ const UpdateUser = ({ history, match }) => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
 
-  const userId = match.params.id;
+  const userId = params.id;
 
   useEffect(() => {
     if (user && user._id !== userId) {
@@ -53,10 +55,10 @@ const UpdateUser = ({ history, match }) => {
 
     if (isUpdated) {
       alert.success("User Updated Successfully");
-      history.push("/admin/users");
+      navigate("/admin/users");
       dispatch({ type: UPDATE_USER_RESET });
     }
-  }, [dispatch, alert, error, history, isUpdated, updateError, user, userId]);
+  }, [dispatch, alert, error, navigate, isUpdated, updateError, user, userId]);
 
   const updateUserSubmitHandler = (e) => {
     e.preventDefault();
@@ -74,58 +76,63 @@ const UpdateUser = ({ history, match }) => {
     <Fragment>
       <MetaData title="Update User" />
       <div className="dashboard">
-        <SideBar />
-        <div className="newProductContainer">
-          {loading ? (
-            <Loader />
-          ) : (
-            <form
-              className="createProductForm"
-              onSubmit={updateUserSubmitHandler}
-            >
-              <h1>Update User</h1>
-
-              <div>
-                <PersonIcon />
-                <input
-                  type="text"
-                  placeholder="Name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div>
-                <MailOutlineIcon />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-
-              <div>
-                <VerifiedUserIcon />
-                <select value={role} onChange={(e) => setRole(e.target.value)}>
-                  <option value="">Choose Role</option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                </select>
-              </div>
-
-              <Button
-                id="createProductBtn"
-                type="submit"
-                disabled={
-                  updateLoading ? true : false || role === "" ? true : false
-                }
+        <div className="dashboardContainer">
+          <SideBar />
+          <div className="newProductContainer">
+            {loading ? (
+              <Loader />
+            ) : (
+              <form
+                className="createProductForm"
+                onSubmit={updateUserSubmitHandler}
               >
-                Update
-              </Button>
-            </form>
-          )}
+                <h1>Update User</h1>
+
+                <div>
+                  <PersonIcon />
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <MailOutlineIcon />
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                <div>
+                  <VerifiedUserIcon />
+                  <select
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  >
+                    <option value="">Choose Role</option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                  </select>
+                </div>
+
+                <Button
+                  id="createProductBtn"
+                  type="submit"
+                  disabled={
+                    updateLoading ? true : false || role === "" ? true : false
+                  }
+                >
+                  Update
+                </Button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </Fragment>

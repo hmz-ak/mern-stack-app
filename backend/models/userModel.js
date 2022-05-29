@@ -35,11 +35,11 @@ const userSchema = new mongoose.Schema({
   avatar: {
     public_id: {
       type: String,
-      // required: true,
+      required: [true, "Please select a file for your avatar"],
     },
     url: {
       type: String,
-      // required: true,
+      required: [true, "Please select a file for your avatar"],
     },
   },
   role: {

@@ -20,7 +20,6 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { createOrder, clearErrors } from "../../actions/orderAction";
-import Loader from "../layout/Loader/Loader";
 
 const Payment = ({ stripeApiKey }) => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -147,7 +146,7 @@ const Payment = ({ stripeApiKey }) => {
           ) : (
             <input
               type="submit"
-              value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+              value={`Pay - Rs ${orderInfo && orderInfo.totalPrice}`}
               ref={payBtn}
               className="paymentFormBtn"
             />

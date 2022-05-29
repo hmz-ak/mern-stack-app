@@ -27,7 +27,11 @@ nav {
   padding: 2%;
   position: relative;
 }
-
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
 .nav-header {
   font-weight: bold;
   display: flex;

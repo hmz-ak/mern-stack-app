@@ -9,6 +9,7 @@ import { useAlert } from "react-alert";
 import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import LaunchIcon from "@material-ui/icons/Launch";
+import Navbar from "../layout/Navbar/Navbar";
 
 const MyOrders = () => {
   const dispatch = useDispatch();
@@ -88,22 +89,24 @@ const MyOrders = () => {
   return (
     <Fragment>
       <MetaData title={`${user.name} - Orders`} />
-
       {loading ? (
         <Loader />
       ) : (
-        <div className="myOrdersPage">
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            className="myOrdersTable"
-            autoHeight
-          />
+        <>
+          <Navbar />
+          <div className="myOrdersPage">
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              pageSize={10}
+              disableSelectionOnClick
+              className="myOrdersTable"
+              autoHeight
+            />
 
-          <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
-        </div>
+            <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
+          </div>
+        </>
       )}
     </Fragment>
   );

@@ -18,9 +18,9 @@ import Badge from "@mui/material/Badge";
 
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import logo from "../../../images/logo_transparent.png";
 
 const pages = ["Home", "Products", "About", "Cart"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const ResponsiveAppBar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -32,21 +32,13 @@ const ResponsiveAppBar = () => {
   };
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -62,7 +54,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 3, display: { xs: "none", md: "flex" } }}
           >
-            Bro's Fashion
+            <img className={"logo"} src={logo} alt="Kitty Katty!" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -105,7 +97,13 @@ const ResponsiveAppBar = () => {
                     to={page === "Home" ? "/" : `/${page}`}
                   >
                     <Typography sx={{ mr: 3 }} textAlign="center">
-                      {page === "Cart" ? <ShoppingCartIcon /> : page}
+                      {page === "Cart" ? (
+                        <Badge badgeContent={cartItems.length} color="primary">
+                          <ShoppingCartIcon />
+                        </Badge>
+                      ) : (
+                        page
+                      )}
                     </Typography>
                   </Link>
                 </MenuItem>
@@ -118,7 +116,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 5, flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            Bro's Fashion
+            <img className="logo" src={logo} alt="Kitty Katty!" />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

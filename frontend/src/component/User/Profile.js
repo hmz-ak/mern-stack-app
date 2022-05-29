@@ -1,5 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { Fragment, useEffect } from "react";
+import { useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
@@ -9,23 +9,6 @@ import Navbar from "../layout/Navbar/Navbar";
 
 const Profile = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const [avatar, setAvatar] = useState("");
-
-  const updateProfilePic = (e) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        setAvatar(reader.result);
-      }
-    };
-
-    reader.readAsDataURL(e.target.files[0]);
-    //  else {
-    //   setUser({ ...user, [e.target.name]: e.target.value });
-    // }
-  };
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -46,14 +29,6 @@ const Profile = () => {
             <div>
               <h1>My Profile</h1>
               <div>
-                <div className="overlay-image">
-                  <input
-                    type="file"
-                    name="avatar"
-                    accept="image/*"
-                    onChange={updateProfilePic}
-                  />
-                </div>
                 <div className="img-container">
                   <img src={user.avatar.url} alt={user.name} />
                 </div>

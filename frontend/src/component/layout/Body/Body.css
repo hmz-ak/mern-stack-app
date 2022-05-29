@@ -60,9 +60,14 @@
 @media only screen and (max-width: 900px) {
   .productCard {
     width: 20vmax;
-    margin: 2vmax;
+    margin: 0.5vmax;
   }
   .productCard p {
     font-size: 2.3vmax;
+  }
+  .flex-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
   }
 }

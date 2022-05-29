@@ -4,11 +4,34 @@ import "./dashboard.css";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Doughnut, Line } from "react-chartjs-2";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction.js";
 import { getAllUsers } from "../../actions/userAction.js";
 import MetaData from "../layout/MetaData";
+import Navbar from "../layout/Navbar/Navbar";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+} from "chart.js";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement
+);
 const Dashboard = () => {
   const dispatch = useDispatch();
 
@@ -17,6 +40,18 @@ const Dashboard = () => {
   const { orders } = useSelector((state) => state.allOrders);
 
   const { users } = useSelector((state) => state.allUsers);
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: "Chart.js Line Chart",
+      },
+    },
+  };
 
   let outOfStock = 0;
 
@@ -38,6 +73,7 @@ const Dashboard = () => {
     orders.forEach((item) => {
       totalAmount += item.totalPrice;
     });
+  totalAmount = Math.round(totalAmount);
 
   const lineState = {
     labels: ["Initial Amount", "Amount Earned"],
@@ -63,43 +99,44 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
-      <MetaData title="Dashboard - Admin Panel" />
-
-      <div className="dashboardContainer">
+    <>
+      <Navbar />
+      <div className="dashboard">
+        <MetaData title="Dashboard - Admin Panel" />
         <Typography component="h1">Dashboard</Typography>
-        <Sidebar />
-        <div className="dashboardSummary">
-          <div>
-            <p>
-              Total Amount <br /> ₹{totalAmount}
-            </p>
-          </div>
-          <div className="dashboardSummaryBox2">
-            <Link to="/admin/products">
-              <p>Product</p>
-              <p>{products && products.length}</p>
-            </Link>
-            <Link to="/admin/orders">
-              <p>Orders</p>
-              <p>{orders && orders.length}</p>
-            </Link>
-            <Link to="/admin/users">
-              <p>Users</p>
-              <p>{users && users.length}</p>
-            </Link>
-          </div>
-        </div>
-        {/* 
-        <div className="lineChart">
-          <Line data={lineState} />
-        </div>
 
-        <div className="doughnutChart">
-          <Doughnut data={doughnutState} />
-        </div> */}
+        <div className="dashboardContainer">
+          <Sidebar />
+          <div className="dashboardSummary">
+            <div>
+              <p>
+                Total Amount <br /> {totalAmount}Rs
+              </p>
+            </div>
+            <div className="dashboardSummaryBox2">
+              <Link to="/admin/products">
+                <p>Product</p>
+                <p>{products && products.length}</p>
+              </Link>
+              <Link to="/admin/orders">
+                <p>Orders</p>
+                <p>{orders && orders.length}</p>
+              </Link>
+              <Link to="/admin/users">
+                <p>Users</p>
+                <p>{users && users.length}</p>
+              </Link>
+            </div>
+            <div className="lineChart">
+              <Line options={options} data={lineState} />
+            </div>
+            <div className="doughnutChart">
+              <Doughnut data={doughnutState} />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

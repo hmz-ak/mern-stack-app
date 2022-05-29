@@ -1,10 +1,11 @@
 import React from "react";
 import "./Footer.css";
-import logo from "../../../images/logo.png";
 import { BsFacebook } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { BsPinterest } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import logo from "../../../images/logo_transparent.png";
 
 const Footer = () => {
   return (
@@ -13,7 +14,7 @@ const Footer = () => {
         <section className="section3">
           <div className="column-container manage-container">
             <div className="logo-container">
-              <img src={logo} className="logo" />
+              <img src={logo} alt={"logo"} className="logo" />
             </div>
             <div className="social-media-container">
               <li>
@@ -65,40 +66,29 @@ const Footer = () => {
           <div className="column-container row-container">
             <ul className="footer-links">
               <li>
-                <a href="#">Home</a>
+                <Link to={"/"}>Home</Link>
+              </li>
+
+              <li>
+                <Link to={"/Products"}>Products</Link>
               </li>
               <li>
-                <a href="">Pricing</a>
-              </li>
-              <li>
-                <a href="#">Products</a>
-              </li>
-              <li>
-                <a href="#">About Us</a>
+                <Link to={"/About"}>About Us</Link>
               </li>
             </ul>
           </div>
           <div className="column-container row-container">
             <ul className="footer-links">
               <li>
-                <a href="#">Careers</a>
+                <Link to={"/orders"}>Orders</Link>
               </li>
               <li>
-                <a href="">Community</a>
+                <Link to={"/account"}>Profile</Link>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <Link to={"/"}>Privacy Policy</Link>
               </li>
             </ul>
-          </div>
-          <div className="column-container subscribe-form">
-            <form action="">
-              <input />
-              <button id="submit" className="subscribe-btn btn" type="submit">
-                Go
-              </button>
-              <p id="email-message"></p>
-            </form>
           </div>
         </section>
       </footer>

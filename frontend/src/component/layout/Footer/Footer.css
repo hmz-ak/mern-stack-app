@@ -3,7 +3,7 @@
   margin: 0;
 }
 footer {
-  background-color: var(--very-dark-blue);
+  background-color: black;
   height: 30vh;
   display: flex;
   justify-content: space-around;
@@ -60,6 +60,7 @@ form .get-started-btn {
 @media only screen and (max-width: 900px) {
   footer {
     height: auto;
+    padding: 2rem;
   }
   .section3 {
     width: 100%;

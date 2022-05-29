@@ -57,7 +57,6 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     });
   } catch (error) {
     await user.save({ validateBeforeSave: false });
-
     return next(new ErrorHander(error.message, 500));
   }
 });

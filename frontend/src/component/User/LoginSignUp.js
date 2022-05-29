@@ -16,7 +16,6 @@ const LoginSignUp = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const alert = useAlert();
-  console.log(location)
 
   const { error, loading, isAuthenticated, message } = useSelector(
     (state) => state.user
@@ -65,6 +64,7 @@ const LoginSignUp = () => {
       reader.onload = () => {
         if (reader.readyState === 2) {
           setAvatarPreview(reader.result);
+          console.log(avatarPreview);
           setAvatar(reader.result);
         }
       };
@@ -75,19 +75,24 @@ const LoginSignUp = () => {
     }
   };
   const redirect = location.search ? `/${location.search.split("=")[1]}` : "/";
+  // const redirect = location.search ? location.search.split("=")[1] : "/account";
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-    if (message) {
-      alert.success(message);
-    }
-    if (isAuthenticated) {
-      navigate(redirect);
-    }
-  }, [dispatch, error, alert, isAuthenticated, message]);
+  useEffect(
+    () => {
+      if (error) {
+        alert.error(error);
+        dispatch(clearErrors());
+      }
+      if (message) {
+        alert.success(message);
+      }
+      if (isAuthenticated) {
+        navigate(redirect);
+      }
+    },
+    [dispatch, error, alert, isAuthenticated, message, navigate, redirect],
+    redirect
+  );
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -208,6 +213,7 @@ const LoginSignUp = () => {
                     onChange={registerDataChange}
                   />
                 </div>
+                <h3>File must be less than 1MB</h3>
                 <input type="submit" value="Register" className="signUpBtn" />
               </form>
             </div>

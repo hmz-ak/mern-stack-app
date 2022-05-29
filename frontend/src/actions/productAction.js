@@ -35,6 +35,10 @@ import { useAlert } from "react-alert";
 export const getProduct =
   (keyword = "", currentPage = 1, price = [0, 2000], category, rating = 0) =>
   async (dispatch) => {
+    if (rating === null) {
+      let zeroRating = 0;
+      rating = zeroRating;
+    }
     try {
       dispatch({
         type: ALL_PRODUCT_REQUEST,
@@ -190,7 +194,7 @@ export const getAllReviews = (id) => async (dispatch) => {
   try {
     dispatch({ type: ALL_REVIEW_REQUEST });
 
-    const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
+    const { data } = await axios.get(`/api/v1/reviews?productId=${id}`);
 
     dispatch({
       type: ALL_REVIEW_SUCCESS,
@@ -210,7 +214,7 @@ export const deleteReviews = (reviewId, productId) => async (dispatch) => {
     dispatch({ type: DELETE_REVIEW_REQUEST });
 
     const { data } = await axios.delete(
-      `/api/v1/reviews?id=${reviewId}&productId=${productId}`
+      `/api/v1/reviews?reviewId=${reviewId}&productId=${productId}`
     );
 
     dispatch({

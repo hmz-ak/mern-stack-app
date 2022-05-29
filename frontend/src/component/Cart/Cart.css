@@ -156,17 +156,17 @@ input[type="number"] {
   }
 
   .cartInput > button {
-    padding: 1.5vmax;
+    padding: 0.8vmax;
   }
 
   .cartInput > input {
-    width: 2vmax;
-    padding: 1.5vmax;
+    width: 4vmax;
+    padding: 0.5vmax;
     font: 400 1.8vmax "Poppins";
   }
 
   .cartSubtotal {
-    padding: 1.5vmax;
+    padding: 0.5vmax;
     height: 20vmax;
     font: 600 2vmax "Poppins";
   }

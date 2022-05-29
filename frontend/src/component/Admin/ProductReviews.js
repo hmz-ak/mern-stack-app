@@ -14,11 +14,12 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Star from "@material-ui/icons/Star";
 
 import SideBar from "./Sidebar";
-import { DELETE_REVIEW_RESET } from "../../constants/productConstants";
+import { DELETE_REVIEW_RESET } from "../../constants/productConstant";
+import { useNavigate } from "react-router-dom";
 
-const ProductReviews = ({ history }) => {
+const ProductReviews = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const alert = useAlert();
 
   const { error: deleteError, isDeleted } = useSelector(
@@ -41,9 +42,9 @@ const ProductReviews = ({ history }) => {
   };
 
   useEffect(() => {
-    if (productId.length === 24) {
-      dispatch(getAllReviews(productId));
-    }
+    // if (productId.length === 24) {
+    //   dispatch(getAllReviews(productId));
+    // }
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -56,10 +57,10 @@ const ProductReviews = ({ history }) => {
 
     if (isDeleted) {
       alert.success("Review Deleted Successfully");
-      history.push("/admin/reviews");
+      dispatch(getAllReviews(productId));
       dispatch({ type: DELETE_REVIEW_RESET });
     }
-  }, [dispatch, alert, error, deleteError, history, isDeleted, productId]);
+  }, [dispatch, alert, error, deleteError, isDeleted, productId]);
 
   const columns = [
     { field: "id", headerName: "Review ID", minWidth: 200, flex: 0.5 },
@@ -132,48 +133,50 @@ const ProductReviews = ({ history }) => {
       <MetaData title={`ALL REVIEWS - Admin`} />
 
       <div className="dashboard">
-        <SideBar />
-        <div className="productReviewsContainer">
-          <form
-            className="productReviewsForm"
-            onSubmit={productReviewsSubmitHandler}
-          >
-            <h1 className="productReviewsFormHeading">ALL REVIEWS</h1>
-
-            <div>
-              <Star />
-              <input
-                type="text"
-                placeholder="Product Id"
-                required
-                value={productId}
-                onChange={(e) => setProductId(e.target.value)}
-              />
-            </div>
-
-            <Button
-              id="createProductBtn"
-              type="submit"
-              disabled={
-                loading ? true : false || productId === "" ? true : false
-              }
+        <div className="dashboardContainer">
+          <SideBar />
+          <div className="productReviewsContainer">
+            <form
+              className="productReviewsForm"
+              onSubmit={productReviewsSubmitHandler}
             >
-              Search
-            </Button>
-          </form>
+              <h1 className="productReviewsFormHeading">ALL REVIEWS</h1>
 
-          {reviews && reviews.length > 0 ? (
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              pageSize={10}
-              disableSelectionOnClick
-              className="productListTable"
-              autoHeight
-            />
-          ) : (
-            <h1 className="productReviewsFormHeading">No Reviews Found</h1>
-          )}
+              <div>
+                <Star />
+                <input
+                  type="text"
+                  placeholder="Product Id"
+                  required
+                  value={productId}
+                  onChange={(e) => setProductId(e.target.value)}
+                />
+              </div>
+
+              <Button
+                id="createProductBtn"
+                type="submit"
+                disabled={
+                  loading ? true : false || productId === "" ? true : false
+                }
+              >
+                Search
+              </Button>
+            </form>
+
+            {reviews && reviews.length > 0 ? (
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                pageSize={10}
+                disableSelectionOnClick
+                className="productListTable"
+                autoHeight
+              />
+            ) : (
+              <h1 className="productReviewsFormHeading">No Reviews Found</h1>
+            )}
+          </div>
         </div>
       </div>
     </Fragment>

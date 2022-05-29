@@ -1,0 +1,44 @@
+.about-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+.about-header {
+  text-align: center;
+  margin: 3rem auto;
+}
+.about-header > h1 {
+  font: 600 4vmax "Poppins";
+  width: 30vmax;
+  margin: 0 auto;
+  border-bottom: 2px solid grey;
+  padding: 2rem 0;
+}
+
+.about-box > div {
+  width: 45%;
+}
+.about-box > div:first-child {
+  text-align: justify;
+  color: grey;
+  font: 400 1rem "Poppins";
+}
+.about-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+}
+.about-image > img {
+  object-fit: cover;
+  width: 100%;
+}
+@media screen and (max-width: 700px) {
+  .about-box {
+    flex-direction: column;
+  }
+  .about-box > div {
+    width: 100%;
+    margin: 2rem auto;
+  }
+}

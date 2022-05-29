@@ -1,7 +1,6 @@
 import React from "react";
 import "./Body.css";
 import Product from "./ProductCard";
-import image from "../../../images/shirt3.jpg";
 import { getProduct } from "../../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -13,9 +12,8 @@ import { clearErrors } from "../../../actions/productAction";
 const Body = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const { loading, error, products, productsCount } = useSelector(
-    (state) => state.products
-  );
+  const { loading, error, products } = useSelector((state) => state.products);
+  let featuredProducts = products.slice(0, 4);
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -23,7 +21,7 @@ const Body = () => {
     }
 
     dispatch(getProduct());
-  }, [dispatch]);
+  }, [dispatch, alert, error]);
 
   return (
     <>
@@ -35,8 +33,8 @@ const Body = () => {
           <div className="body-container ">
             <h2 className="body-heading">Featured Products</h2>
             <div className="flex-container">
-              {products &&
-                products.map((product) => (
+              {featuredProducts &&
+                featuredProducts.map((product) => (
                   <Product product={product} key={product._id} />
                 ))}
             </div>

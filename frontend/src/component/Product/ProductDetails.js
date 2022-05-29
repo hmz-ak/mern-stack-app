@@ -35,6 +35,7 @@ const ProductDetails = () => {
   const { success, error: reviewError } = useSelector(
     (state) => state.newReview
   );
+  const { user } = useSelector((state) => state.user);
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
@@ -216,7 +217,7 @@ const ProductDetails = () => {
           <div className="reviews">
             {product.reviews &&
               product.reviews.map((review, index) => (
-                <ReviewCard key={index} review={review} />
+                <ReviewCard key={index} review={review} user={user} />
               ))}
           </div>
         ) : (
